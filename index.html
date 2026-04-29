@@ -231,6 +231,10 @@
       border-bottom: 1px solid var(--color-border);
     }
     .breakthrough-item:first-child { border-top: 1px solid var(--color-border); }
+    .breakthrough-item:last-child { 
+      border-bottom: none;
+      padding-bottom: 0;
+    }
     .breakthrough-num {
       width: 44px;
       height: 44px;
@@ -351,6 +355,12 @@
     }
     .constraints-table tr:first-child {
       border-top: 1px solid var(--color-border);
+    }
+    .constraints-table tr:last-child {
+      border-bottom: none;
+    }
+    .constraints-table tr:last-child td {
+      padding-bottom: 0;
     }
     .constraints-table td {
       padding: 18px 0;
