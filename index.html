@@ -73,6 +73,16 @@
       background: var(--color-dark);
       color: #fff;
       padding: 72px 24px 64px;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #073980;
     }
     .hero .container {
       max-width: var(--max-width);
@@ -134,6 +144,10 @@
     /* ── SECTIONS ── */
     section {
       padding: var(--section-pad);
+      border-bottom: 1px solid var(--color-border);
+    }
+    section:last-child { 
+      border-bottom: none; 
     }
     section.alt-bg {
       background: var(--color-surface);
@@ -342,7 +356,9 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 36px;
-      font-size: 15px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.6;
     }
     .constraints-table tr {
       border-bottom: 1px solid var(--color-border);
@@ -365,12 +381,12 @@
       font-weight: 600;
       color: var(--color-text);
       padding-right: 24px;
-      font-size: 14px;
+      font-size: 16px;
     }
     .constraints-table td:last-child {
       color: var(--color-text-muted);
-      font-size: 14px;
-      line-height: 1.65;
+      font-size: 16px;
+      line-height: 1.6;
     }
     @media (max-width: 540px) {
       .constraints-table tr { display: block; padding: 16px 0; }
