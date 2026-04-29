@@ -335,6 +335,9 @@
       margin-bottom: 8px;
       color: var(--color-text);
     }
+    .feature-card h3 + p + h3 {
+      margin-top: 24px;
+    }
     .feature-card p {
       font-size: 14px;
       line-height: 1.65;
@@ -538,21 +541,21 @@
           <div class="breakthrough-num">02</div>
           <div class="breakthrough-content">
             <h3>Earning trust through transparency</h3>
-            <p>App store feedback consistently flagged customer skepticism, not with the design, but with the brand. Billing confusion, connectivity gaps, and the general wariness people have toward big manufacturers. My job was to design around those pain points with clarity, not paper over them. Features like the alert system and diagnostics had to be honest first, polished second.</p>
+            <p>App store feedback consistently flagged customer skepticism, not with the design, but with the brand. Billing confusion, connectivity gaps, and the general wariness people have toward big manufacturers. My job was to design around those pain points with clarity. Features like the alert system and diagnostics had to be honest first, polished second.</p>
           </div>
         </div>
         <div class="breakthrough-item">
           <div class="breakthrough-num">03</div>
           <div class="breakthrough-content">
             <h3>EV raised the stakes for real-time data</h3>
-            <p>Internal combustion vehicles and electric vehicles have fundamentally different relationships with the app. For EV owners, the app is a live instrument: charge levels, range estimates, pre-conditioning schedules. The vehicle status and health widget system I owned had to grow into that without losing coherence for ICE customers still on the platform.</p>
+            <p>ICE and EV vehicles have fundamentally different relationships with the app. For EV owners, the app is a live instrument: charge levels, range estimates, pre-conditioning schedules. The vehicle status and health widget system I owned had to grow into that without losing coherence for ICE customers still on the platform.</p>
           </div>
         </div>
         <div class="breakthrough-item">
           <div class="breakthrough-num">04</div>
           <div class="breakthrough-content">
             <h3>Competing with a moving target</h3>
-            <p>Other OEMs were iterating fast. Tesla, Ford, and others were shipping new app capabilities tied to new vehicle hardware. Keeping GM competitive meant consistently raising the quality bar on the features I owned while anticipating what new vehicle model years would unlock in the app experience.</p>
+            <p>Other OEMs were iterating fast. Tesla, Ford, and others were shipping new app capabilities tied to new vehicle hardware. Keeping GM competitive meant consistently raising the quality bar on the features I owned.</p>
           </div>
         </div>
       </div>
@@ -567,7 +570,7 @@
       <table class="constraints-table">
         <tr>
           <td>Platform parity</td>
-          <td>Features had to work consistently across iOS and Android, with different interaction patterns, OS-level behaviors, and release cycles to navigate.</td>
+          <td>Features had to work consistently across iOS and Android, with different interaction patterns and OS-level behaviors.</td>
         </tr>
         <tr>
           <td>Vehicle dependency</td>
@@ -575,11 +578,11 @@
         </tr>
         <tr>
           <td>Subscription model</td>
-          <td>Connected services were subscription-based, meaning design decisions intersected with billing, upsell flows, and the ongoing need to communicate ongoing value to active subscribers.</td>
+          <td>App access required a monthly subscription. It was all or nothing, which meant every feature had to justify the cost. Design decisions directly affected perceived value and subscriber retention.</td>
         </tr>
         <tr>
           <td>Security &amp; compliance</td>
-          <td>App sign-in, account security, and notification preferences were subject to security standards, legal review, and privacy regulations across multiple markets.</td>
+          <td>App sign-in, account security, and notification preferences were subject to security standards, legal review, and privacy regulations.</td>
         </tr>
         <tr>
           <td>Legacy architecture</td>
@@ -625,7 +628,7 @@
       <div class="phase-block">
         <div class="phase-num">Phase 05</div>
         <h3>Handoff & Design QA</h3>
-        <p>Detailed developer handoff via Figma, including specs, motion notes, and edge case documentation. Followed by QA pass after implementation to catch drift between spec and build, particularly on the details that matter at small screen sizes.</p>
+        <p>Detailed developer handoff via Figma, including specs, motion notes, and edge cases. Followed by QA pass after implementation to catch drift between spec and build, particularly on the details that matter on mobile screen sizes.</p>
       </div>
     </div>
   </section>
@@ -641,31 +644,25 @@
       <div class="feature-list">
         <div class="feature-card">
           <span class="feature-tag">Vehicle Health</span>
-          <h3>Vehicle Status &amp; Diagnostics</h3>
-          <p>Real-time visibility into vehicle health, system status, and diagnostic alerts. Designed to be scannable at a glance, with appropriate depth for customers who wanted more detail, from tire pressure to engine indicators.</p>
-        </div>
-        <div class="feature-card">
-          <span class="feature-tag">Vehicle Health</span>
-          <h3>Health Widgets &amp; Details Screen</h3>
+          <h3>Vehicle Status & Diagnostics</h3>
+          <p>Real-time visibility into vehicle health, system status, and diagnostic alerts. Designed to be scannable at a glance, with appropriate depth for customers who wanted more detail, from tire pressure to engine indicators to vehicle service suggestions.</p>
+          <h3>Health Widgets</h3>
           <p>Persistent health widgets and the full details view that surfaced when customers needed to dig deeper. Designed to work coherently for both ICE and EV vehicles, with EV-specific states for charge level, range, and pre-conditioning.</p>
         </div>
         <div class="feature-card">
-          <span class="feature-tag">Proactive Communication</span>
-          <h3>Alert System</h3>
-          <p>The notification layer that told customers when something needed their attention, from low tire pressure to service reminders to charging interruptions. Clear, actionable, and calibrated to avoid alert fatigue.</p>
-        </div>
-        <div class="feature-card">
           <span class="feature-tag">Communication</span>
-          <h3>Message Inbox</h3>
+          <h3>Critical Alerts</h3>
+          <p>The alert notification layer notifying customers when something needed their attention, from low tire pressure to service reminders to charging interruptions. Clear, actionable, and calibrated to avoid alert fatigue.</p>
+          <h3>Notification Inbox</h3>
           <p>In-app messaging from GM: service notifications, connected service updates, and account communications. Designed as a trusted, low-noise channel that customers would actually check.</p>
         </div>
         <div class="feature-card">
           <span class="feature-tag">Account &amp; Security</span>
           <h3>App Sign-In &amp; Security</h3>
-          <p>Authentication flows and security settings, including multi-factor options, biometric sign-in, and session management. Balancing friction against the sensitivity of vehicle access.</p>
+          <p>Authentication flows and security settings, including multi-factor options, biometric sign-in, and session management.</p>
         </div>
         <div class="feature-card">
-          <span class="feature-tag">Account &amp; Connectivity</span>
+          <span class="feature-tag">Connectivity</span>
           <h3>Notification Preferences &amp; WiFi Connectivity</h3>
           <p>Customer control over how and when the app communicates with them, plus the WiFi hotspot management experience for connected vehicles. A practical feature that became increasingly important as customers expected always-on connectivity.</p>
         </div>
@@ -701,15 +698,11 @@
     <div class="container">
       <p class="section-label">Reflection</p>
       <h2>What I took away from this work</h2>
-      <div class="reflection-grid">
-        <div>
-          <p>The GM Companion App was the longest sustained design engagement of my career and the work where I developed the most depth. Owning features across four-plus years meant seeing what happened after launch. Understanding what held up, what needed revision, and how customer needs shifted as the platform grew and the vehicle lineup expanded.</p>
-          <p>The EV transition was the most interesting inflection point. It wasn't just new features on the same foundation. Electric vehicles changed the relationship between driver and app in fundamental ways, and the design system I was working within had to stretch to accommodate that without breaking coherence for customers who had been using the app for years on ICE vehicles.</p>
-        </div>
-        <div>
-          <p>One consistent lesson from this work: utility beats novelty. Features that reliably answered a customer's real question (what's my charge level, does my car need service, did that alert mean something serious) earned trust over time. Features that were clever but unclear didn't. That shaped how I approached every design decision on this project and carried into everything I've done since.</p>
-          <p>Working within a larger design org also meant getting good at advocating for design decisions across a complex stakeholder environment: product, engineering, legal, and analytics all had skin in the game. Making the case for quality clearly and with supporting rationale became as important as the quality itself.</p>
-        </div>
+      <div class="section-content">
+        <p>The GM Companion App was the longest sustained design engagement of my career and the work where I developed the most depth. Owning features across four-plus years meant seeing what happened after launch. Understanding what held up, what needed revision, and how customer needs shifted as the platform grew and the vehicle lineup expanded.</p>
+        <p>The EV transition was the most interesting inflection point. It wasn't just new features on the same foundation. Electric vehicles changed the relationship between driver and app in fundamental ways, and the design system I was working within had to stretch to accommodate that without breaking coherence for customers who had been using the app for years on ICE vehicles.</p>
+        <p>One consistent lesson from this work: utility beats novelty. Features that reliably answered a customer's real question (what's my charge level, does my car need service, did that alert mean something serious) earned trust over time. Features that were clever but unclear didn't. That shaped how I approached every design decision on this project and carried into everything I've done since.</p>
+        <p>Working within a larger design org also meant getting good at advocating for design decisions across a complex stakeholder environment: product, engineering, legal, and analytics all had skin in the game. Making the case for quality clearly and with supporting rationale became as important as the quality itself.</p>
       </div>
       <div class="pull-quote">
         <p>"Utility beats novelty. Features that reliably answered a real question earned trust over time."</p>
