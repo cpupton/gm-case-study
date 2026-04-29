@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GM Mobile Companion App — Craig Upton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-dark: #0a0a0a;
+      --color-accent: #073980;
+      --color-accent-light: #6BA3E8;
+      --color-text: #1a1a1a;
+      --color-text-muted: #5a5a5a;
+      --color-text-subtle: #888888;
+      --color-border: #e0e0e0;
+      --color-surface: #f7f7f7;
+      --color-surface-alt: #f0f4fa;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+      --max-width: 900px;
+      --section-pad: 80px 24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+    }
+    .header-name {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .header-name-line,
+    .header-title-line { display: none; }
+    .header-desktop-name { display: inline; }
+    .header-tag {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent-light);
+      font-weight: 500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--color-dark);
+      color: #fff;
+      padding: 72px 24px 64px;
+    }
+    .hero .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-light);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+    .hero-intro {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      max-width: 640px;
+      margin-bottom: 52px;
+      font-weight: 300;
+    }
+    .meta-row {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .meta-item label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .meta-item span {
+      font-size: 14px;
+      color: rgba(255,255,255,0.95);
+      font-weight: 400;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: var(--section-pad);
+    }
+    section.alt-bg {
+      background: var(--color-surface);
+    }
+    section.accent-bg {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    section.dark-bg {
+      background: var(--color-dark);
+      color: #fff;
+    }
+
+    .section-label {
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--color-accent-light);
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--color-accent-light);
+      opacity: 0.4;
+    }
+    .dark-bg .section-label,
+    .accent-bg .section-label {
+      color: rgba(255,255,255,0.5);
+    }
+    .dark-bg .section-label::after,
+    .accent-bg .section-label::after {
+      background: rgba(255,255,255,0.5);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--color-text);
+      margin-bottom: 16px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    .dark-bg p, .accent-bg p { color: rgba(255,255,255,0.75); }
+    .dark-bg h2, .accent-bg h2 { color: #fff; }
+    .dark-bg h3, .accent-bg h3 { color: #fff; }
+
+    /* ── PROBLEM / CHALLENGE ── */
+    .challenge-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+    }
+    @media (max-width: 640px) {
+      .challenge-body { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .challenge-col p { color: var(--color-text-muted); }
+
+    /* ── BREAKTHROUGH ITEMS ── */
+    .breakthrough-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .breakthrough-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .breakthrough-item:first-child { border-top: 1px solid var(--color-border); }
+    .breakthrough-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .breakthrough-content h3 {
+      font-size: 17px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-text);
+    }
+    .breakthrough-content p {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* ── PHASE BLOCKS ── */
+    .phase-block {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 32px;
+      margin: 32px 0 20px;
+      position: relative;
+    }
+    .phase-num {
+      position: absolute;
+      top: -14px;
+      left: 28px;
+      background: var(--color-accent);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .phase-block h3 {
+      font-style: normal;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--color-text);
+    }
+    .phase-block p {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      font-weight: 300;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── FEATURES ── */
+    .features-intro {
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 640px) {
+      .feature-list { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-accent);
+      padding: 28px 24px;
+      border-radius: 0 0 4px 4px;
+    }
+    .feature-card h3 {
+      font-size: 16px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-text);
+    }
+    .feature-card p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    .feature-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* ── CONSTRAINTS TABLE ── */
+    .constraints-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+      font-size: 15px;
+    }
+    .constraints-table tr {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .constraints-table tr:first-child {
+      border-top: 1px solid var(--color-border);
+    }
+    .constraints-table td {
+      padding: 18px 0;
+      vertical-align: top;
+    }
+    .constraints-table td:first-child {
+      width: 220px;
+      font-weight: 600;
+      color: var(--color-text);
+      padding-right: 24px;
+      font-size: 14px;
+    }
+    .constraints-table td:last-child {
+      color: var(--color-text-muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    @media (max-width: 540px) {
+      .constraints-table tr { display: block; padding: 16px 0; }
+      .constraints-table td { display: block; width: 100%; padding: 0; }
+      .constraints-table td:first-child { margin-bottom: 6px; padding-right: 0; }
+    }
+
+    /* ── STAT CARDS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.12);
+      margin-top: 48px;
+    }
+    @media (max-width: 600px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+    .stat-card {
+      background: var(--color-accent);
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      display: block;
+      margin-bottom: 10px;
+      white-space: normal;
+    }
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 4px solid var(--color-accent);
+      padding: 24px 32px;
+      margin: 48px 0 0;
+      background: var(--color-surface-alt);
+    }
+    .pull-quote p {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.3;
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    /* ── REFLECTION ── */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+    }
+    @media (max-width: 640px) {
+      .reflection-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--color-dark);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .site-footer p {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+      margin: 0;
+    }
+    .site-footer a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: rgba(255,255,255,0.85); }
+
+    /* ── DIVIDER ── removed, using ::after on section-label instead */
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <span class="header-name"><span class="header-desktop-name">Craig Upton — Senior Product Designer</span><span class="header-name-line">Craig Upton</span><span class="header-title-line">Senior Product Designer</span></span>
+    <span class="header-tag">Case Study</span>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-label">Case Study — General Motors</p>
+      <h1>GM Mobile Companion App</h1>
+      <p class="hero-intro">Defining the connected vehicle experience across iOS and Android. Designing features that gave the app real utility, justified subscription value, and kept GM competitive as the industry moved into the EV era.</p>
+      <div class="meta-row">
+        <div class="meta-item">
+          <label>My Role</label>
+          <span>Senior Product Designer</span>
+        </div>
+        <div class="meta-item">
+          <label>Platform</label>
+          <span>iOS &amp; Android</span>
+        </div>
+        <div class="meta-item">
+          <label>Timeline</label>
+          <span>2020 – 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE CHALLENGE -->
+  <section>
+    <div class="container">
+      <p class="section-label">The Challenge</p>
+      <h2>An app that needed to earn its place</h2>
+      <div class="challenge-body">
+        <div class="challenge-col">
+          <p>Connected vehicle apps had become table stakes across the industry. Every major OEM had one, which meant having an app wasn't enough. It had to be genuinely useful. For GM's companion app, that meant designing features that gave customers a real reason to open it, and a real reason to keep paying for the subscription.</p>
+          <p>The competitive landscape was crowded and customers were increasingly savvy. Trust in large manufacturers wasn't a given. The app had to earn that trust through reliability, clarity, and features that actually delivered on the promise of a connected vehicle.</p>
+        </div>
+        <div class="challenge-col">
+          <p>When GM moved into the EV segment, that challenge intensified. Electric vehicles introduced a new category of utility: charging status, range visibility, remote pre-conditioning. The app became the primary interface between the driver and the vehicle in ways that simply didn't exist for ICE models.</p>
+          <p>I was a designer assigned specifically to the companion app, responsible for a core set of features that formed the backbone of the vehicle management experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY DESIGN CHALLENGES -->
+  <section class="alt-bg">
+    <div class="container">
+      <p class="section-label">Design Challenges</p>
+      <h2>What made this work hard</h2>
+      <div class="breakthrough-list">
+        <div class="breakthrough-item">
+          <div class="breakthrough-num">01</div>
+          <div class="breakthrough-content">
+            <h3>Subscription value, feature by feature</h3>
+            <p>Every feature I owned had to justify its place in a paid subscription. That meant designing for immediate comprehension and recurring utility, not just first-use impressions. If a customer opened vehicle status once a week, it needed to be worth opening every time.</p>
+          </div>
+        </div>
+        <div class="breakthrough-item">
+          <div class="breakthrough-num">02</div>
+          <div class="breakthrough-content">
+            <h3>Earning trust through transparency</h3>
+            <p>App store feedback consistently flagged customer skepticism, not with the design, but with the brand. Billing confusion, connectivity gaps, and the general wariness people have toward big manufacturers. My job was to design around those pain points with clarity, not paper over them. Features like the alert system and diagnostics had to be honest first, polished second.</p>
+          </div>
+        </div>
+        <div class="breakthrough-item">
+          <div class="breakthrough-num">03</div>
+          <div class="breakthrough-content">
+            <h3>EV raised the stakes for real-time data</h3>
+            <p>Internal combustion vehicles and electric vehicles have fundamentally different relationships with the app. For EV owners, the app is a live instrument: charge levels, range estimates, pre-conditioning schedules. The vehicle status and health widget system I owned had to grow into that without losing coherence for ICE customers still on the platform.</p>
+          </div>
+        </div>
+        <div class="breakthrough-item">
+          <div class="breakthrough-num">04</div>
+          <div class="breakthrough-content">
+            <h3>Competing with a moving target</h3>
+            <p>Other OEMs were iterating fast. Tesla, Ford, and others were shipping new app capabilities tied to new vehicle hardware. Keeping GM competitive meant consistently raising the quality bar on the features I owned while anticipating what new vehicle model years would unlock in the app experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRAINTS -->
+  <section>
+    <div class="container">
+      <p class="section-label">Constraints</p>
+      <h2>Working within the boundaries</h2>
+      <table class="constraints-table">
+        <tr>
+          <td>Platform parity</td>
+          <td>Features had to work consistently across iOS and Android, with different interaction patterns, OS-level behaviors, and release cycles to navigate.</td>
+        </tr>
+        <tr>
+          <td>Vehicle dependency</td>
+          <td>Many features were directly tied to vehicle hardware capabilities, which varied by model year, trim level, and whether the customer had an ICE or EV. Design had to account for graceful degradation when features weren't available.</td>
+        </tr>
+        <tr>
+          <td>Subscription model</td>
+          <td>Connected services were subscription-based, meaning design decisions intersected with billing, upsell flows, and the ongoing need to communicate ongoing value to active subscribers.</td>
+        </tr>
+        <tr>
+          <td>Security &amp; compliance</td>
+          <td>App sign-in, account security, and notification preferences were subject to security standards, legal review, and privacy regulations across multiple markets.</td>
+        </tr>
+        <tr>
+          <td>Legacy architecture</td>
+          <td>The app had years of accumulated features, user flows, and technical constraints. New design work had to integrate cleanly rather than disrupt what existed, particularly for long-tenured subscribers.</td>
+        </tr>
+        <tr>
+          <td>OEM brand standards</td>
+          <td>GM's design system and brand standards applied across every touchpoint: visual, motion, and interaction, with General Counsel sign-off required on any significant interface changes.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="alt-bg">
+    <div class="container">
+      <p class="section-label">Process</p>
+      <h2>How the work got done</h2>
+      <div class="phase-block">
+        <div class="phase-num">Phase 01</div>
+        <h3>Discovery & Competitive Audit</h3>
+        <p>Each new feature or improvement started with understanding what already existed, in the app and in the competitive landscape. Auditing peer OEM apps, reviewing app store feedback, and talking with product and engineering to map where the gaps were.</p>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-num">Phase 02</div>
+        <h3>User Flow & Feature Mapping</h3>
+        <p>Flow before visuals. For features like diagnostics, the alert system, and WiFi connectivity, the primary design challenge was structural, determining the right decision points, states, and paths before any comps were made.</p>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-num">Phase 03</div>
+        <h3>Visual Design & Iteration</h3>
+        <p>High-fidelity comps built in Figma, working within GM's design system. Iterating with product and stakeholders across multiple rounds, documenting rationale for every significant decision, especially where the design pushed against existing patterns.</p>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-num">Phase 04</div>
+        <h3>Stakeholder Review & Validation</h3>
+        <p>Presenting to product, engineering, analytics, and legal. User testing where time allowed. Tracking feedback against design intent and documenting trade-offs when business constraints required compromise.</p>
+      </div>
+
+      <div class="phase-block">
+        <div class="phase-num">Phase 05</div>
+        <h3>Handoff & Design QA</h3>
+        <p>Detailed developer handoff via Figma, including specs, motion notes, and edge case documentation. Followed by QA pass after implementation to catch drift between spec and build, particularly on the details that matter at small screen sizes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES I OWNED -->
+  <section>
+    <div class="container">
+      <p class="section-label">Feature Ownership</p>
+      <h2>The experiences I designed</h2>
+      <div class="features-intro">
+        <p>Within the broader companion app team, I owned a specific set of features that spanned vehicle management, account infrastructure, and connectivity. Each had its own design challenges and stakeholder dependencies.</p>
+      </div>
+      <div class="feature-list">
+        <div class="feature-card">
+          <span class="feature-tag">Vehicle Health</span>
+          <h3>Vehicle Status &amp; Diagnostics</h3>
+          <p>Real-time visibility into vehicle health, system status, and diagnostic alerts. Designed to be scannable at a glance, with appropriate depth for customers who wanted more detail, from tire pressure to engine indicators.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-tag">Vehicle Health</span>
+          <h3>Health Widgets &amp; Details Screen</h3>
+          <p>Persistent health widgets and the full details view that surfaced when customers needed to dig deeper. Designed to work coherently for both ICE and EV vehicles, with EV-specific states for charge level, range, and pre-conditioning.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-tag">Proactive Communication</span>
+          <h3>Alert System</h3>
+          <p>The notification layer that told customers when something needed their attention, from low tire pressure to service reminders to charging interruptions. Clear, actionable, and calibrated to avoid alert fatigue.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-tag">Communication</span>
+          <h3>Message Inbox</h3>
+          <p>In-app messaging from GM: service notifications, connected service updates, and account communications. Designed as a trusted, low-noise channel that customers would actually check.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-tag">Account &amp; Security</span>
+          <h3>App Sign-In &amp; Security</h3>
+          <p>Authentication flows and security settings, including multi-factor options, biometric sign-in, and session management. Balancing friction against the sensitivity of vehicle access.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-tag">Account &amp; Connectivity</span>
+          <h3>Notification Preferences &amp; WiFi Connectivity</h3>
+          <p>Customer control over how and when the app communicates with them, plus the WiFi hotspot management experience for connected vehicles. A practical feature that became increasingly important as customers expected always-on connectivity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="dark-bg">
+    <div class="container">
+      <p class="section-label">Outcomes</p>
+      <h2>What the work produced</h2>
+      <p style="margin-top: 32px; max-width: 640px;">GM's connected vehicle apps were among the most downloaded in the automotive category. The design consistently held up. App store feedback pointed to connectivity and billing issues as friction points, not the interface. JD Power repeatedly recognized GM as a leader in the connected vehicle space, validating the overall experience year over year.</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-number">Millions+</span>
+          <p class="stat-label">App downloads across iOS &amp; Android</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">JD&nbsp;Power</span>
+          <p class="stat-label">Top-ranked connected vehicle experience</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">4+ yrs</span>
+          <p class="stat-label">Continuous feature ownership &amp; iteration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section>
+    <div class="container">
+      <p class="section-label">Reflection</p>
+      <h2>What I took away from this work</h2>
+      <div class="reflection-grid">
+        <div>
+          <p>The GM Companion App was the longest sustained design engagement of my career and the work where I developed the most depth. Owning features across four-plus years meant seeing what happened after launch. Understanding what held up, what needed revision, and how customer needs shifted as the platform grew and the vehicle lineup expanded.</p>
+          <p>The EV transition was the most interesting inflection point. It wasn't just new features on the same foundation. Electric vehicles changed the relationship between driver and app in fundamental ways, and the design system I was working within had to stretch to accommodate that without breaking coherence for customers who had been using the app for years on ICE vehicles.</p>
+        </div>
+        <div>
+          <p>One consistent lesson from this work: utility beats novelty. Features that reliably answered a customer's real question (what's my charge level, does my car need service, did that alert mean something serious) earned trust over time. Features that were clever but unclear didn't. That shaped how I approached every design decision on this project and carried into everything I've done since.</p>
+          <p>Working within a larger design org also meant getting good at advocating for design decisions across a complex stakeholder environment: product, engineering, legal, and analytics all had skin in the game. Making the case for quality clearly and with supporting rationale became as important as the quality itself.</p>
+        </div>
+      </div>
+      <div class="pull-quote">
+        <p>"Utility beats novelty. Features that reliably answered a real question earned trust over time."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>Craig Upton — Senior Product Designer &nbsp;·&nbsp; <a href="mailto:cpupton@gmail.com">cpupton@gmail.com</a> &nbsp;·&nbsp; <a href="https://cpupton.dunked.com/?share=681Ig1MJR0UnZWQbJVqEeegGi48fJwEU">Portfolio</a></p>
+  </footer>
+
+</body>
+</html>
