@@ -43,58 +43,67 @@
       top: 0;
       z-index: 100;
       background: var(--color-dark);
+      padding: 28px 0;
+    }
+    .site-header .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 48px;
-    }
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
     }
     .header-name {
       font-family: var(--font-body);
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 300;
       color: rgba(255,255,255,0.95);
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
-    .header-title {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
+    .header-name-line,
+    .header-title-line { display: none; }
+    .header-desktop-name { display: inline; }
     .header-tag {
-      font-size: 12px;
-      letter-spacing: 0.16em;
+      font-size: 14px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--color-accent-light);
       font-weight: 500;
     }
     @media (max-width: 640px) {
       .site-header {
-        padding: 20px 24px;
+        padding: 20px 0;
       }
       .header-name {
-        font-size: 12px;
+        font-size: 14px;
       }
-      .header-title {
-        font-size: 10px;
+      .header-desktop-name { display: none; }
+      .header-name-line,
+      .header-title-line {
+        display: block;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0.18em;
+        line-height: 1.6;
+      }
+      .header-name-line {
+        color: rgba(255,255,255,0.95);
+      }
+      .header-title-line {
+        color: rgba(255,255,255,0.5);
+        font-size: 11px;
+        letter-spacing: 0.12em;
       }
       .header-tag {
-        font-size: 11px;
+        font-size: 14px;
       }
     }
 
     .hero {
       background: var(--color-dark);
       color: #fff;
-      padding: 72px 24px 64px;
+      padding: 72px 0 64px;
       position: relative;
     }
     .hero::after {
@@ -109,6 +118,7 @@
     .hero .container {
       max-width: var(--max-width);
       margin: 0 auto;
+      padding: 0 24px;
     }
     .hero-label {
       font-size: 11px;
@@ -169,7 +179,7 @@
     }
 
     section {
-      padding: var(--section-pad);
+      padding: 80px 0;
       border-bottom: 1px solid var(--color-border);
       background: #ffffff;
     }
@@ -529,11 +539,10 @@
 <body>
 
   <header class="site-header">
-    <div class="header-left">
-      <span class="header-name">CRAIG UPTON</span>
-      <span class="header-title">SENIOR PRODUCT DESIGNER</span>
+    <div class="container">
+      <span class="header-name"><span class="header-desktop-name">Craig Upton — Senior Product Designer</span><span class="header-name-line">Craig Upton</span><span class="header-title-line">Senior Product Designer</span></span>
+      <span class="header-tag">Case Study</span>
     </div>
-    <span class="header-tag">CASE STUDY</span>
   </header>
 
   <section class="hero">
